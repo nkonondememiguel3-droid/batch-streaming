@@ -1,12 +1,23 @@
-
+-- all the items in the entire dataset.
 create table if not exists items (
-  id generated always as identity,
+  id bigint generated always as identity primary key,
   full_path varchar(200) not null unique,
   label varchar(50) not null,
-  size int not null,
-  created_at timestamp not null with time zone default now(),
-  local bool not null default true -- the item is store in our object storage database or outside.
+  size bigint not null,
+  created_at timestamptz not null default now (),
+  local boolean not null default true -- true: stored in our object storage, false: stored outside
 );
 
-create index idx_fullpath_label on items ( full_path, label );
+-- items only for trainning phase.
+create table if not exists train_items (
+  id bigint generated always as identity primary key,
+  item_id bigint not null unique,
+  constraint fk_train_items_item foreign key (item_id) references items (id) on delete cascade
+);
 
+-- items only for testing.
+create table if not exists test_items (
+  id bigint generated always as identity primary key,
+  item_id bigint not null unique,
+  constraint fk_test_items_item foreign key (item_id) references items (id) on delete cascade
+);
