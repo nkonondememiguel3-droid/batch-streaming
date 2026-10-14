@@ -1,0 +1,12 @@
+[project]
+name = "bstream"
+version = "0.1.0"
+description = "batch streaming service"
+readme = "README.md"
+authors = [
+    { name = "Nkono Ndeme Miguel", email = "nkonondememiguel7@gmail.com" }
+]
+requires-python = ">=3.15.0"
+dependencies = [
+    "psycopg[binary]>=3.3.6",
+]
