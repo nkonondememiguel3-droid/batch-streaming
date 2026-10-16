@@ -1,6 +1,6 @@
 #maybe you should use the --network=host when running docker.
 
-from astral/uv:python3.15-alpine
+from astral/uv:python3.13-alpine
 
 workdir /usr/src/app
 
@@ -16,5 +16,5 @@ run uv sync --locked --no-dev --no-install-project
 copy . .
 run uv sync --locked --no-dev
 
-cmd [ "python", "main.py" ]
+cmd [ "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000" ]
 

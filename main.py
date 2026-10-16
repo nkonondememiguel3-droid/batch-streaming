@@ -1,6 +1,12 @@
-def main():
-    print("Hello from bstream!")
+from typing import Any
+from fastapi import FastAPI
 
 
-if __name__ == "__main__":
-    main()
+app: FastAPI = FastAPI()
+
+@app.get( "/" )
+async def root() -> dict[str, Any]:
+    return {
+        "message": "hello world"
+    }
+

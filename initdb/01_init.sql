@@ -1,3 +1,5 @@
+-- 01_init.sql
+
 -- all the items in the entire dataset.
 create table if not exists items (
   id bigint generated always as identity primary key,
